@@ -1,0 +1,97 @@
+.profile__alert--success {
+    padding: 10px 30px;
+    border-color: #badbcc;
+    background-color: #edf8fd;
+    color: #00aaff;
+    margin-bottom: 20px;
+}
+
+.profile-container {
+    width: 40%;
+    max-width: 800px;
+    margin: 40px auto;
+}
+
+.profile-heading {
+    font-size: 24px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.profile-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.profile-picture-group {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.profile-picture {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profile-picture.placeholder {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: #e0e0e0;
+}
+
+.profile-picture-button {
+    display: inline-block;
+    padding: 8px 12px;
+    border: 1px solid #ff5655;
+    border-radius: 3px;
+    color: #ff5655;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.form-group label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input {
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 16px;
+    height: 40px;
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 4px;
+}
+
+.update-button {
+    width: 100%;
+    margin: 25px auto 60px auto;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    background-color: #ff5655;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.update-button:hover {
+    opacity: 0.9;
+}
