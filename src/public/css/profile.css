@@ -34,12 +34,15 @@
     width: 120px;
     height: 120px;
     border-radius: 50%;
+    border: none;
     object-fit: cover;
+    background-color: #e0e0e0;
 }
 
-.profile-picture.placeholder {
+.profile-picture-placeholder {
     width: 120px;
     height: 120px;
+    border: none;
     border-radius: 50%;
     background-color: #e0e0e0;
 }

@@ -1,0 +1,89 @@
+@extends('layouts.app')
+
+@section('css')
+<link rel="stylesheet" href="{{ asset('css/purchase.css') }}">
+@endsection
+
+@section('content')
+<div class="purchase-container">
+    <div class="purchase-left">
+
+        <div class="purchase-item">
+            <img src="{{ asset('storage/' . $product->image_path) }}" alt="商品画像">
+            <div class="item-info">
+                <h2>{{ $product->name }}</h2>
+                <p class="price">¥{{ number_format($product->price) }}</p>
+            </div>
+        </div>
+
+        <form method="POST" action="/purchase/{{ $product->id }}" id="purchase-form">
+            @csrf
+            <div class="purchase-section">
+                <h3>支払い方法</h3>
+                <select name="payment_method" id="payment-method">
+                    <option value="">選択してください</option>
+                    <option value="convenience"
+                        {{ old('payment_method') === 'convenience' ? 'selected' : '' }}>
+                        コンビニ払い
+                    </option>
+                    <option value="card"
+                        {{ old('payment_method') === 'card' ? 'selected' : '' }}>
+                        カード支払い
+                    </option>
+                </select>
+                @error('payment_method')
+                    <p class="form-error">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div class="purchase-section">
+                <div class="section-header">
+                    <h3>配送先</h3>
+                    <a href="/purchase/address/{{ $product->id }}" class="change-link">変更する</a>
+                </div>
+                <p class="address-detail">〒 {{ $postcode }}</p>
+                <p class="address-detail">{{ $address }}</p>
+                <p class="address-detail">{{ $building ?? '' }}</p>
+            </div>
+        </form>
+    </div>
+
+    <div class="purchase-right">
+        <div class="summary-box">
+            <div class="summary-row">
+                <span>商品代金</span>
+                <span class="amount">¥{{ number_format($product->price) }}</span>
+            </div>
+            <div class="summary-row">
+                <span>支払い方法</span>
+                <span id="summary-payment">
+                    {{ old('payment_method')
+                        ? (old('payment_method') === 'convenience' ? 'コンビニ払い' : 'カード支払い')
+                        : '' }}
+                </span>
+            </div>
+        </div>
+        <button type="submit" class="purchase-button" form="purchase-form">
+            購入する
+        </button>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const select = document.getElementById('payment-method');
+    const summary = document.getElementById('summary-payment');
+
+    select.addEventListener('change', function() {
+        if (select.value === 'convenience') {
+            summary.textContent = 'コンビニ払い';
+        } else if (select.value === 'card') {
+            summary.textContent = 'カード支払い';
+        } else {
+            summary.textContent = '';
+        }
+    });
+});
+</script>
+
+@endsection

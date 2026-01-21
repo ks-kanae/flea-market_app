@@ -26,6 +26,41 @@
     font-size: 20px;
     color: #666;
     border-radius: 4px;
+    position: relative;
+}
+
+.item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+/* SOLDバッジ */
+.sold-badge {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 150px 150px 0 0;
+    border-color: #ff5655 transparent transparent transparent;
+    border-top-left-radius: 4px;
+    z-index: 10;
+}
+
+.sold-badge::after {
+    content: 'SOLD';
+    position: absolute;
+    top: -110px;
+    left: 18px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 24px;
+    transform: rotate(-45deg);
+    letter-spacing: 1px;
+    white-space: nowrap;
 }
 
 .item-detail__right {
@@ -77,12 +112,34 @@
     cursor: pointer;
     color: #666;
     transition: all 0.2s;
+    text-decoration: none;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1;
+}
+
+
+.action-button span.count {
+    line-height: 1;
+}
+
+.item-actions a {
+    color: #666;
+    font-size: 14px;
+    font-weight: normal;
 }
 
 .action-icon {
     width: 20px;
     height: 20px;
     object-fit: contain;
+}
+
+.heart{
+    width: 23px;
+    height: 23px;
+    margin-bottom: -2px;
 }
 
 .count {
@@ -99,6 +156,8 @@
     font-weight: 500;
     cursor: pointer;
     transition: background-color 0.2s;
+    text-decoration: none;
+    text-align: center;
 }
 
 .purchase-button:hover {
@@ -155,9 +214,9 @@
 }
 
 .comment-item {
-    padding: 16px;
+    padding: 16px 0;
     border-radius: 4px;
-    margin-bottom: 12px;
+    margin-bottom: 5px;
 }
 
 .comment-header {
@@ -189,6 +248,24 @@
     margin: 0;
 }
 
+.delete-form {
+    margin-left: auto;
+}
+
+.delete-button {
+    background: none;
+    border: none;
+    color: #ff5655;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.delete-button:hover {
+    text-decoration: underline;
+    background-color: #ffe5e5;
+    border-radius: 3px;
+}
+
 .comment-textarea {
     width: 100%;
     min-height: 120px;
@@ -198,12 +275,18 @@
     font-size: 14px;
     font-family: inherit;
     resize: vertical;
-    margin-bottom: 12px;
+    margin-bottom: 15px;
 }
 
 .comment-textarea:focus {
     outline: none;
     border-color: #ff5655;
+}
+
+.comment-error {
+    color: #ff0000;
+    font-size: 14px;
+    margin-bottom: 3px;
 }
 
 .comment-submit {
@@ -221,6 +304,27 @@
 }
 
 .comment-submit:hover {
+    background-color: #fd1616;
+}
+
+.comment-button {
+    display: block;
+    width: 100%;
+    background-color: #ff5655;
+    color: #fff;
+    border: none;
+    padding: 14px;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    text-decoration: none;
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.comment-button:hover {
     background-color: #fd1616;
 }
 

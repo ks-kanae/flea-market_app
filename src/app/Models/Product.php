@@ -17,6 +17,7 @@ class Product extends Model
         'price',
         'condition',
         'image_path',
+        'is_sold'
     ];
 
     public function user()
@@ -27,5 +28,20 @@ class Product extends Model
     public function categories()
     {
         return $this->belongsToMany(Category::class);
+    }
+
+    public function likes()
+    {
+    return $this->hasMany(Like::class);
+    }
+
+    public function comments()
+    {
+    return $this->hasMany(Comment::class);
+    }
+
+    public function purchase()
+    {
+    return $this->hasOne(Purchase::class);
     }
 }

@@ -19,23 +19,40 @@
 
 <div class="tab-container">
     <div class="tabs">
-        <a href="#" class="tab-link">出品した商品</a>
-        <a href="#" class="tab-link">購入した商品</a>
+        <a href="{{ route('mypage.index', ['page' => 'sell']) }}" class="tab-link {{ $page === 'sell' ? 'active' : '' }}">出品した商品
+        </a>
+        <a href="{{ route('mypage.index', ['page' => 'buy']) }}" class="tab-link {{ $page === 'buy' ? 'active' : '' }}">購入した商品
+        </a>
     </div>
 </div>
 
 <div class="content">
     <div class="product-list">
-        @for ($i = 0; $i < 7; $i++)
-        <a href="/item/{{ $i + 1 }}" class="product-card-link">
+        @forelse ($products as $product)
+        <a href="/item/{{ $product->id }}" class="product-card-link">
             <div class="product-card">
                 <div class="product-image">
-                    <span>商品画像</span>
+                    @if($product->image_path)
+                        <img src="{{ asset('storage/' . $product->image_path) }}" alt="{{ $product->name }}">
+                    @else
+                        <span>商品画像</span>
+                    @endif
+                    @if($product->is_sold)
+                        <span class="sold-badge"></span>
+                    @endif
                 </div>
-                <div class="product-name">商品名</div>
+                <div class="product-name">{{ $product->name }}</div>
             </div>
         </a>
-        @endfor
+        @empty
+            @if($page === 'sell')
+                <p class="no-like-message">出品した商品がありません</p>
+            @elseif($page === 'buy')
+                <p class="no-like-message">購入した商品がありません</p>
+            @else
+                <p class="no-like-message">商品がありません</p>
+            @endif
+        @endforelse
     </div>
 </div>
 @endsection

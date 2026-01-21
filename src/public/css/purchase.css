@@ -1,0 +1,182 @@
+.purchase-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+    display: flex;
+    gap: 60px;
+}
+
+/* =====================
+左側
+===================== */
+.purchase-left {
+    flex: 2;
+}
+
+.purchase-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #ddd;
+}
+
+.purchase-item img {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    background: #eee;
+    flex-shrink: 0;
+}
+
+.item-info h2 {
+    font-size: 24px;
+    margin: 0 0 10px 0;
+    font-weight: 600;
+    padding-left: 30px;
+}
+
+.item-info .price {
+    font-size: 24px;
+    padding-left: 30px;
+    margin: 0;
+}
+
+/* セクション */
+.purchase-section {
+    padding: 30px 0;
+    font-weight: 600;
+    border-bottom: 1px solid #ddd;
+}
+
+.purchase-section h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 15px 0;
+    padding-left: 30px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.section-header h3 {
+    margin: 0;
+}
+
+.change-link {
+    color: #0066cc;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding-right: 3%;
+}
+
+.change-link:hover {
+    text-decoration: underline;
+}
+
+/* 支払い方法 */
+.purchase-section select {
+    width: 100%;
+    max-width: 300px;
+    margin-left: 80px;
+    padding: 12px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.form-error {
+    color: #ff5a5f;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    padding-left: 80px;
+}
+
+/* 配送先 */
+.address-detail {
+    margin: 5px 0;
+    font-size: 14px;
+    line-height: 1.6;
+    padding-left: 80px;
+}
+
+/* =====================
+右側
+===================== */
+.purchase-right {
+    flex: 1;
+    position: sticky;
+    top: 20px;
+    height: fit-content;
+}
+
+.summary-box {
+    border: 1px solid #ddd;
+    padding:  0px 20px;
+    background: #fff;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 25px 20px;
+    margin: 0 -20px;
+    font-size: 18px;
+    border-bottom: 1px solid #ddd;
+}
+
+.summary-row:last-child {
+    margin-bottom: 0;
+    border-bottom: none;
+}
+
+.summary-row .amount {
+    font-size: 20px;
+}
+
+/* 購入ボタン */
+.purchase-button {
+    margin-top: 20px;
+    margin-bottom: 80px;
+    width: 100%;
+    padding: 18px 0;
+    background: #ff5a5f;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.purchase-button:hover {
+    background: #fd1616;
+}
+
+/* レスポンシブ */
+@media (max-width: 768px) {
+    .purchase-container {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .purchase-right {
+        position: static;
+    }
+
+    .purchase-item {
+        flex-direction: column;
+    }
+
+    .purchase-item img {
+        width: 100%;
+        height: auto;
+    }
+}

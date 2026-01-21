@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Profile;
 use App\Http\Requests\ProfileRequest;
 
@@ -17,12 +18,18 @@ class ProfileController extends Controller
     public function update(ProfileRequest $request)
     {
         $user = Auth::user();
+        $isFirstTime = !$user->profile_completed;
 
         $profile = $user->profile ?? new Profile([
         'user_id' => $user->id,
         ]);
 
         if ($request->hasFile('profile_image')) {
+
+            if ($profile->profile_image && Storage::disk('public')->exists($profile->profile_image)) {
+            Storage::disk('public')->delete($profile->profile_image);
+            }
+
             $path = $request->file('profile_image')->store('profile_images', 'public');
             $profile->profile_image = $path;
         }
@@ -36,6 +43,10 @@ class ProfileController extends Controller
         $user->profile_completed = true;
         $user->name = $request->input('name');
         $user->save();
+
+        if ($isFirstTime) {
+        return redirect('/');
+        }
 
         return redirect()->route('profile.edit')->with('success', 'プロフィールを更新しました！');
     }

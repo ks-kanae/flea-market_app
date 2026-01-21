@@ -18,11 +18,11 @@
                 <a href="{{ route('home') }}">
                     <img class="header__logo" src="{{ asset('img/COACHTECHヘッダーロゴ.png') }}">
                 </a>
-                @if (Auth::check())
-                <form class="header-search" action="">
-                    <input type="text" placeholder="なにをお探しですか？">
+                <form class="header-search" action="{{ route('home') }}" method="GET">
+                    <input type="text" name="keyword" value="{{ request('keyword') }}" placeholder="なにをお探しですか？">
                 </form>
                 <ul class="header-nav">
+                @auth
                     <li class="header-nav__item">
                         <a class="header-nav__link" href="/mypage">マイページ</a>
                     </li>
@@ -35,8 +35,12 @@
                     <li class="header-nav__item">
                         <a href="/sell" class="header-nav__button--sell">出品</a>
                     </li>
+                @else
+                    <li class="header-nav__item">
+                        <a class="header-nav__link" href="{{ route('login') }}">ログイン</a>
+                    </li>
+                @endauth
                 </ul>
-                @endif
             </div>
         </div>
     </header>

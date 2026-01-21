@@ -10,6 +10,44 @@ use App\Http\Requests\ExhibitionRequest;
 
 class ProductController extends Controller
 {
+    public function index(Request $request)
+    {
+        $query = Product::query();
+
+        if ($request->filled('keyword')) {
+            $keywords = array_filter(
+            preg_split('/[\s　]+/u', trim($request->keyword))
+            );
+
+            $query->where(function ($q) use ($keywords) {
+                foreach ($keywords as $word) {
+                $q->orWhere('name', 'like', '%' . $word . '%');
+                }
+            });
+        }
+
+        if ($request->tab === 'mylist') {
+            if (!Auth::check()) {
+                return view('index', [
+                    'products' => collect(),
+                    'showLoginMessage' => true,
+                ]);
+            }
+
+            $query->whereHas('likes', function ($q) {
+                $q->where('user_id', Auth::id());
+            });
+        }
+
+        if (Auth::check()) {
+        $query->where('user_id', '!=', Auth::id());
+        }
+
+        $products = $query->latest()->take(20)->get();
+
+        return view('index', compact('products'));
+    }
+
     public function create()
     {
         $categories = Category::all();
@@ -34,4 +72,12 @@ class ProductController extends Controller
 
         return redirect('/')->with('success', '商品を出品しました！');
     }
+
+    public function show($id)
+    {
+    $product = Product::with('categories', 'user')->findOrFail($id);
+
+    return view('item', compact('product'));
+    }
+
 }

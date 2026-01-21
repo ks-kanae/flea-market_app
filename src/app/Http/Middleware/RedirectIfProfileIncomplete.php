@@ -16,6 +16,10 @@ class RedirectIfProfileIncomplete
      */
     public function handle(Request $request, Closure $next)
     {
+        if (!auth()->check()) {
+            return $next($request);
+        }
+
         $exclude = [
         route('profile.edit'),
         route('login'),

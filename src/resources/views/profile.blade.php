@@ -19,11 +19,9 @@
 
         <div class="profile-picture-group">
             @if(Auth::user()->profile && Auth::user()->profile->profile_image)
-            <img class="profile-picture"
-            src="{{ asset('storage/' . Auth::user()->profile->profile_image) }}"
-            alt="プロフィール画像">
+                <img class="profile-picture" src="{{ asset('storage/' . Auth::user()->profile->profile_image) }}" >
             @else
-            <div class="profile-picture placeholder"></div>
+                <div class="profile-picture-placeholder"></div>
             @endif
             <div class="profile-picture-button-wrapper">
                 <label for="profile_image" class="profile-picture-button">画像を選択する</label>
@@ -66,4 +64,35 @@
         <button type="submit" class="update-button">更新する</button>
     </form>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const input = document.getElementById('profile_image');
+    const pictureGroup = document.querySelector('.profile-picture-group');
+
+    input.addEventListener('change', function (e) {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            let preview = pictureGroup.querySelector('.profile-picture');
+            let placeholder = pictureGroup.querySelector('.profile-picture-placeholder');
+
+            if (placeholder) {
+                placeholder.remove();
+                preview = document.createElement('img');
+                preview.className = 'profile-picture';
+                preview.alt = 'プロフィール画像';
+                const buttonWrapper = pictureGroup.querySelector('.profile-picture-button-wrapper');
+                pictureGroup.insertBefore(preview, buttonWrapper);
+            }
+
+            preview.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    });
+});
+</script>
+
 @endsection

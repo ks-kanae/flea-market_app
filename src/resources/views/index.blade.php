@@ -7,23 +7,48 @@
 @section('content')
 <div class="tab-container">
     <div class="tabs">
-        <a href="#" class="tab-link">おすすめ</a>
-        <a href="#" class="tab-link">マイリスト</a>
+        <a href="/?{{ http_build_query(['keyword' => request('keyword')]) }}" class="tab-link {{ request('tab') === null ? 'active' : '' }}">おすすめ
+        </a>
+        <a href="/?{{ http_build_query(['tab' => 'mylist', 'keyword' => request('keyword')]) }}"
+        class="tab-link {{ request('tab') === 'mylist' ? 'active' : '' }}">マイリスト
+        </a>
     </div>
 </div>
 
 <div class="content">
     <div class="product-list">
-        @for ($i = 0; $i < 6; $i++)
-        <a href="/item/{{ $i + 1 }}" class="product-card-link">
+        @forelse ($products as $product)
+        <a href="/item/{{ $product->id }}" class="product-card-link">
             <div class="product-card">
                 <div class="product-image">
-                    <span>商品画像</span>
+                    <img src="{{ asset('storage/' . $product->image_path) }}" alt="{{ $product->name }}">
+                    @if($product->is_sold)
+                    <span class="sold-badge"></span>
+                    @endif
                 </div>
-                <div class="product-name">商品名</div>
+                <div class="product-name">{{ $product->name }}
+                </div>
             </div>
         </a>
-        @endfor
+        @empty
+        @if(request('tab') === 'mylist' && isset($showLoginMessage))
+        <p class="no-like-message">
+            マイリスト機能を使うにはログインしてください
+        </p>
+        @elseif(request('tab') === 'mylist')
+        <p class="no-like-message">
+            「いいね」した商品がありません
+        </p>
+        @elseif(request('keyword'))
+        <p class="no-like-message">
+            該当する商品が見つかりませんでした
+        </p>
+        @else
+        <p class="no-like-message">
+            商品がありません
+        </p>
+        @endif
+        @endforelse
     </div>
 </div>
 @endsection
