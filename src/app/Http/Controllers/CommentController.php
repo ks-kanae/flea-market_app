@@ -10,6 +10,12 @@ class CommentController extends Controller
 {
     public function store(CommentRequest $request, Product $product)
     {
+        if (!auth()->check()) {
+        return back()
+        ->withInput()
+        ->with('comment_error', 'コメントするにはログインが必要です');
+        }
+
         Comment::create([
             'user_id' => auth()->id(),
             'product_id' => $product->id,

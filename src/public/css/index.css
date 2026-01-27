@@ -1,11 +1,9 @@
-/* メインコンテンツエリア */
 .content {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
 }
 
-/* タブコンテナ */
 .tab-container {
     border-bottom: 1px solid #e0e0e0;
     margin-bottom: 30px;
@@ -15,31 +13,30 @@
     padding-right: 250px;
 }
 
-/* タブナビゲーション */
 .tabs {
     display: flex;
     gap: 40px;
-    padding: 0 20px;
+    padding: 25px 20px 0px 20px;
 }
 
-/* タブリンク */
 .tab-link {
     text-decoration: none;
     color: #999;
     padding: 15px 0;
     position: relative;
     font-size: 16px;
+    font-weight: 600;
     transition: color 0.3s;
+    white-space: nowrap;
 }
 
 .tab-link:hover {
     color: #333;
 }
 
-/* アクティブなタブ */
 .tab-link.active {
     color: #ff5655;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 .tab-link.active::after {
@@ -52,7 +49,6 @@
     background-color: #ff5655;
 }
 
-/* 商品リストのグリッド */
 .product-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -60,14 +56,12 @@
     padding: 0 20px;
 }
 
-/* 商品カードリンク */
 .product-card-link {
     text-decoration: none;
     color: inherit;
     display: block;
 }
 
-/* 商品カード */
 .product-card {
     cursor: pointer;
     transition: transform 0.2s;
@@ -78,7 +72,6 @@
     transform: translateY(-5px);
 }
 
-/* 商品画像エリア */
 .product-image {
     width: 100%;
     aspect-ratio: 1;
@@ -99,7 +92,6 @@
     border-radius: 4px;
 }
 
-/* SOLDバッジ */
 .sold-badge {
     position: absolute;
     top: 0;
@@ -114,7 +106,7 @@
 }
 
 .sold-badge::after {
-    content: 'SOLD';
+    content: 'Sold';
     position: absolute;
     top: -70px;
     left: 8px;
@@ -126,7 +118,6 @@
     white-space: nowrap;
 }
 
-/* 商品名 */
 .product-name {
     font-size: 14px;
     color: #333;
@@ -144,3 +135,66 @@
     margin-top: 40px;
     white-space: nowrap;
 }
+
+.modal {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+.modal-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.25);
+}
+
+.modal-content {
+    position: relative;
+    background: #fff;
+    width: 320px;
+    padding: 30px 20px;
+    border-radius: 8px;
+    text-align: center;
+    z-index: 1;
+}
+
+.modal-message {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.modal-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #ff5655;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.modal-toggle {
+    display: none;
+}
+
+.modal-toggle:checked~.modal {
+    display: flex;
+}
+
+@media screen and (max-width: 1024px) {
+    .tab-container {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+
+    .tabs {
+        gap: 20px;
+    }
+
+    .product-list {
+        gap: 20px;
+    }
+}
+

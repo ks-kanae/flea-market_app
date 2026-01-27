@@ -27,9 +27,18 @@ class RedirectIfProfileIncomplete
         ];
 
         if (auth()->check()
+        && !auth()->user()->hasVerifiedEmail()
+        && !$request->routeIs('verification.*')
+        ) {
+            return redirect()->route('verification.notice');
+        }
+
+        if (auth()->check()
+        && auth()->user()->hasVerifiedEmail()
         && !auth()->user()->profile_completed
-        && !in_array($request->url(), $exclude)) {
-        return redirect('mypage/profile');
+        && !in_array($request->url(), $exclude)
+        ) {
+            return redirect()->route('profile.edit');
         }
 
         return $next($request);

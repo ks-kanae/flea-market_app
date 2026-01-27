@@ -70,7 +70,6 @@
     background: #fd1616;
 }
 
-/* レスポンシブ */
 @media (max-width: 768px) {
     .address-container {
         margin: 40px auto;

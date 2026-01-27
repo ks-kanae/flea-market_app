@@ -6,7 +6,7 @@
 
 @section('content')
 @if (session('success'))
-    <div class="profile__alert--success">
+    <div class="profile-alert-success">
         {{ session('success') }}
     </div>
 @endif

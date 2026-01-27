@@ -94,7 +94,7 @@
                 </label>
                 <div class="price-input-wrapper">
                     <span class="currency-symbol">¥</span>
-                    <input type="number" name="price" class="form-input price-input" placeholder="0" value="{{ old('price') }}">
+                    <input type="number" name="price" class="form-input price-input" value="{{ old('price') }}">
                 </div>
             </div>
         </div>

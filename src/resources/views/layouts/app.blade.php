@@ -13,34 +13,37 @@
 
 <body>
     <header class="header">
-        <div class="header__inner">
+        <div class="header-inner">
             <div class="header-utilities">
                 <a href="{{ route('home') }}">
-                    <img class="header__logo" src="{{ asset('img/COACHTECHヘッダーロゴ.png') }}">
+                    <img class="header-logo" src="{{ asset('img/COACHTECHヘッダーロゴ.png') }}">
                 </a>
+
+                @unless (request()->routeIs('login', 'register'))
                 <form class="header-search" action="{{ route('home') }}" method="GET">
                     <input type="text" name="keyword" value="{{ request('keyword') }}" placeholder="なにをお探しですか？">
                 </form>
                 <ul class="header-nav">
-                @auth
-                    <li class="header-nav__item">
-                        <a class="header-nav__link" href="/mypage">マイページ</a>
-                    </li>
-                    <li class="header-nav__item">
+                    @auth
+                    <li class="header-nav-item">
                         <form class="form" action="/logout" method="post">
                         @csrf
-                            <button class="header-nav__button">ログアウト</button>
+                            <button class="header-nav-button">ログアウト</button>
                         </form>
                     </li>
-                    <li class="header-nav__item">
-                        <a href="/sell" class="header-nav__button--sell">出品</a>
+                    @else
+                    <li class="header-nav-item">
+                        <a class="header-nav-link" href="{{ route('login') }}">ログイン</a>
                     </li>
-                @else
-                    <li class="header-nav__item">
-                        <a class="header-nav__link" href="{{ route('login') }}">ログイン</a>
+                    @endauth
+                    <li class="header-nav-item">
+                        <a class="header-nav-link" href="/mypage">マイページ</a>
                     </li>
-                @endauth
+                    <li class="header-nav-item">
+                        <a href="/sell" class="header-nav-button-sell">出品</a>
+                    </li>
                 </ul>
+                @endunless
             </div>
         </div>
     </header>

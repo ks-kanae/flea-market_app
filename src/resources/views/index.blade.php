@@ -51,4 +51,14 @@
         @endforelse
     </div>
 </div>
+
+<input type="checkbox" id="purchase-complete" class="modal-toggle" {{ session('success') ? 'checked' : '' }}>
+<div class="modal">
+    <label for="purchase-complete" class="modal-overlay"></label>
+
+    <div class="modal-content">
+        <p class="modal-message">{{ session('success') }}</p>
+        <label for="purchase-complete" class="modal-button">OK</label>
+    </div>
+</div>
 @endsection

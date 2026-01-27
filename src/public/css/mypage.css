@@ -1,16 +1,17 @@
-.mypage__header {
+.mypage-header {
     display: flex;
+    margin: 0 auto 40px;
     align-items: center;
     justify-content: center;
-    gap: 260px;
+    gap: 320px;
     padding: 50px 40px 10px;
-    margin-bottom: 40px;
+    max-width: 1200px;
 }
 
 .profile-section {
     display: flex;
     align-items: center;
-    gap: 24px;
+    gap: 60px;
 }
 
 .profile-avatar {
@@ -23,20 +24,21 @@
 
 .profile-name {
     font-size: 24px;
-    font-weight: normal;
+    font-weight: 600;
     margin: 0;
     color: #333;
+    white-space: nowrap;
 }
 
 .edit-profile-button {
-    padding: 10px 24px;
-    border: 2px solid #ff5655;
+    padding: 7px 22px;
+    border: 1px solid #ff5655;
     background: transparent;
     color: #ff5655;
     text-decoration: none;
-    border-radius: 4px;
+    border-radius: 7px;
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 600;
     transition: all 0.2s;
     white-space: nowrap;
 }
@@ -66,7 +68,9 @@
     padding: 15px 0;
     position: relative;
     font-size: 16px;
+    font-weight: 600;
     transition: color 0.3s;
+    white-space: nowrap;
 }
 
 .tab-link:hover {
@@ -75,7 +79,7 @@
 
 .tab-link.active {
     color: #ff5655;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 .tab-link.active::after {
@@ -136,7 +140,6 @@
     border-radius: 4px;
 }
 
-/* SOLDバッジ */
 .sold-badge {
     position: absolute;
     top: 0;
@@ -151,7 +154,7 @@
 }
 
 .sold-badge::after {
-    content: 'SOLD';
+    content: 'Sold';
     position: absolute;
     top: -70px;
     left: 8px;
@@ -181,16 +184,26 @@
     white-space: nowrap;
 }
 
+@media (max-width: 1024px) {
+    .mypage-header {
+        gap: 200px;
+    }
+
+    .tab-container {
+        padding-left: 80px;
+        padding-right: 80px;
+    }
+}
+
 @media (max-width: 768px) {
-    .mypage__header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 20px;
+    .mypage-header {
+        align-items: center;
+        gap: 120px;
     }
 
     .profile-avatar {
-        width: 80px;
-        height: 80px;
+        width: 100px;
+        height: 100px;
     }
 
     .profile-name {
@@ -198,7 +211,11 @@
     }
 
     .edit-profile-button {
-        width: 100%;
         text-align: center;
+    }
+
+    .tab-container {
+        padding-left: 40px;
+        padding-right: 40px;
     }
 }

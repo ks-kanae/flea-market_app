@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -34,6 +35,19 @@ class UserFactory extends Factory
             return [
                 'email_verified_at' => null,
             ];
+        });
+    }
+
+    public function withProfile()
+    {
+        return $this->state([
+            'profile_completed' => true,
+        ])->afterCreating(function (User $user) {
+            $user->profile()->create([
+                'postcode' => '123-4567',
+                'address' => '東京都渋谷区',
+                'building' => 'テストビル',
+            ]);
         });
     }
 }

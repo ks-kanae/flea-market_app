@@ -20,6 +20,10 @@ class Product extends Model
         'is_sold'
     ];
 
+    protected $casts = [
+        'is_sold' => 'boolean',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -32,16 +36,16 @@ class Product extends Model
 
     public function likes()
     {
-    return $this->hasMany(Like::class);
+        return $this->hasMany(Like::class);
     }
 
     public function comments()
     {
-    return $this->hasMany(Comment::class);
+        return $this->hasMany(Comment::class);
     }
 
     public function purchase()
     {
-    return $this->hasOne(Purchase::class);
+        return $this->hasOne(Purchase::class);
     }
 }

@@ -1,4 +1,4 @@
-.profile__alert--success {
+.profile-alert-success {
     padding: 10px 30px;
     border-color: #badbcc;
     background-color: #edf8fd;
@@ -27,7 +27,7 @@
 .profile-picture-group {
     display: flex;
     align-items: center;
-    gap: 30px;
+    gap: 40px;
 }
 
 .profile-picture {
@@ -45,16 +45,18 @@
     border: none;
     border-radius: 50%;
     background-color: #e0e0e0;
+    flex-shrink: 0;
 }
 
 .profile-picture-button {
     display: inline-block;
-    padding: 8px 12px;
+    padding: 5px 15px;
     border: 1px solid #ff5655;
-    border-radius: 3px;
+    border-radius: 7px;
     color: #ff5655;
     cursor: pointer;
     font-size: 14px;
+    white-space: nowrap;
 }
 
 .form-group {
@@ -92,9 +94,37 @@
     background-color: #ff5655;
     color: #fff;
     font-size: 16px;
+    font-weight: 600;
     cursor: pointer;
 }
 
 .update-button:hover {
     opacity: 0.9;
+}
+
+@media (max-width: 1024px) {
+    .profile-container {
+        width: 55%;
+        margin: 30px auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .profile-container {
+        width: 65%;
+        margin: 20px auto;
+    }
+
+    .profile-picture-group {
+        align-items: center;
+        gap: 40px;
+    }
+
+    .profile-heading {
+        font-size: 22px;
+    }
+
+    .update-button {
+        margin-bottom: 40px;
+    }
 }

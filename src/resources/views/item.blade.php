@@ -6,8 +6,8 @@
 
 @section('content')
 <div class="item-detail">
-    <div class="item-detail__container">
-        <div class="item-detail__left">
+    <div class="item-detail-container">
+        <div class="item-detail-left">
             <div class="item-image">
                 <img src="{{ asset('storage/' . $product->image_path) }}" alt="{{ $product->name }}">
                 @if($product->is_sold)
@@ -16,7 +16,7 @@
             </div>
         </div>
 
-        <div class="item-detail__right">
+        <div class="item-detail-right">
             <h1 class="item-name">{{ $product->name }}
             </h1>
             <p class="item-brand">{{ $product->brand ?? ' ' }}</p>
@@ -25,7 +25,6 @@
             </p>
 
             <div class="item-actions">
-                @auth
                 <form action="/like/{{ $product->id }}" method="POST">
                 @csrf
                     <button type="submit" class="action-button" style="border:none; background:none;">
@@ -33,24 +32,22 @@
                         src="{{ $product->likes->where('user_id', auth()->id())->count()
                         ? asset('img/ハートロゴ_ピンク.png')
                         : asset('img/ハートロゴ_デフォルト.png') }}"
-                        class="action-icon">
+                        class="action-icon heart">
                         <span class="count">
                         {{ $product->likes->count() }}
                         </span>
                     </button>
                 </form>
-                @else
-                <a href="{{ route('login') }}" class="action-button">
-                    <img src="{{ asset('img/ハートロゴ_デフォルト.png') }}" class="action-icon heart">
-                    <span class="count">{{ $product->likes->count() }}</span>
-                </a>
-                @endauth
 
                 <button class="action-button">
                     <img src="{{ asset('img/ふきだしロゴ.png') }}" class="action-icon">
                     <span class="count">{{ $product->comments->count() }}</span>
                 </button>
             </div>
+            @if (session('like_error'))
+            <span class="like-error">{{ session('like_error') }}
+            </span>
+            @endif
             @auth
             @if(!$product->is_sold && auth()->id() !== $product->user_id)
             <a href="/purchase/{{ $product->id }}" class="purchase-button">購入手続きへ
@@ -132,10 +129,12 @@
             @if (!$product->is_sold)
             <div class="comment-form">
                 <h2 class="section-title">商品へのコメント</h2>
+                @if (session('comment_error'))
+                <p class="comment-error">{{ session('comment_error') }}</p>
+                @endif
                 @error('body')
                     <p class="comment-error">{{ $message }}</p>
                 @enderror
-                @auth
                 <form action="/comment/{{ $product->id }}" method="POST">
                 @csrf
                     <textarea name="body" class="comment-textarea" placeholder="コメントを入力">{{ old('body') }}</textarea>
@@ -143,11 +142,6 @@
                     コメントを送信する
                     </button>
                 </form>
-                @else
-                <p class="comment-error">コメントするにはログインが必要です</p>
-                <textarea name="body" class="comment-textarea" placeholder="コメントを入力">{{ old('body') }}</textarea>
-                <a href="{{ route('login') }}" class="comment-button">コメントを送信する</a>
-                @endauth
             </div>
             @endif
         </div>

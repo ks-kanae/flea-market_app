@@ -5,48 +5,48 @@
 @endsection
 
 @section('content')
-<div class="login-form__content">
-    <div class="login-form__heading">
+<div class="login-form-content">
+    <div class="login-form-heading">
         <h2>ログイン</h2>
     </div>
     <form class="form" action="/login" method="post" novalidate>
     @csrf
-        <div class="form__group">
-            <div class="form__group-title">
-                <span class="form__label--item">メールアドレス</span>
+        <div class="form-group">
+            <div class="form-group-title">
+                <span class="form-label-item">メールアドレス</span>
             </div>
-            <div class="form__group-content">
-                <div class="form__input--text">
+            <div class="form-group-content">
+                <div class="form-input-text">
                     <input type="email" name="email" value="{{ old('email') }}" />
                 </div>
-                <div class="form__error">
+                <div class="form-error">
                     @error('email')
                     {{ $message }}
                     @enderror
                 </div>
             </div>
         </div>
-        <div class="form__group">
-            <div class="form__group-title">
-                <span class="form__label--item">パスワード</span>
+        <div class="form-group">
+            <div class="form-group-title">
+                <span class="form-label-item">パスワード</span>
             </div>
-            <div class="form__group-content">
-                <div class="form__input--text">
+            <div class="form-group-content">
+                <div class="form-input-text">
                     <input type="password" name="password" />
                 </div>
-                <div class="form__error">
+                <div class="form-error">
                     @error('password')
                     {{ $message }}
                     @enderror
                 </div>
             </div>
         </div>
-        <div class="form__button">
-            <button class="form__button-submit" type="submit">ログイン</button>
+        <div class="form-button">
+            <button class="form-button-submit" type="submit">ログイン</button>
         </div>
     </form>
-    <div class="register__link">
-        <a class="register__button-submit" href="/register">会員登録はこちら</a>
+    <div class="register-link">
+        <a class="register-button-submit" href="/register">会員登録はこちら</a>
     </div>
 </div>
 @endsection

@@ -28,10 +28,10 @@
 
 .section-title {
     font-size: 18px;
-    font-weight: 500;
+    font-weight: 600;
     margin: 0 0 20px 0;
     border-bottom: 1px solid #ddd;
-    color: #333;
+    color: #737171;
 }
 
 .form-label {
@@ -39,7 +39,7 @@
         align-items: center;
         gap: 16px;
         font-size: 14px;
-        font-weight: 500;
+        font-weight: 600;
         color: #333;
         margin-bottom: 12px;
 }
@@ -71,11 +71,11 @@
 
 .image-upload-label {
     display: inline-block;
-    padding: 10px 24px;
+    padding: 7px 22px;
     border: 1px solid #ff5655;
     background: transparent;
     color: #ff5655;
-    border-radius: 4px;
+    border-radius: 7px;
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
@@ -193,7 +193,7 @@
     position: absolute;
     left: 16px;
     font-size: 16px;
-    color: #666;
+    font-weight: 600;
     pointer-events: none;
 }
 
@@ -208,7 +208,7 @@
     padding: 16px;
     border-radius: 4px;
     font-size: 16px;
-    font-weight: 500;
+    font-weight: 600;
     cursor: pointer;
     transition: background-color 0.2s;
     width: 100%;

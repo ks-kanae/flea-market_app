@@ -86,7 +86,7 @@ return [
     'min'                  => [
         'numeric' => ':attributeには、:min以上の数字を指定してください。',
         'file'    => ':attributeには、:min KB以上のファイルを指定してください。',
-        'string'  => ':attributeは、:min文字以上で入力してください',
+        'string'  => ':attributeは:min文字以上で入力してください',
         'array'   => ':attributeの項目は、:min個以上にしてください。',
     ],
     'multiple_of'          => 'The :attribute must be a multiple of :value',
@@ -132,6 +132,7 @@ return [
     'custom' => [
         'attribute-name' => [
             'rule-name' => 'custom-message',
+            'password.confirmed' => 'パスワードと一致しません',
         ],
     ],
 
@@ -150,6 +151,5 @@ return [
     'name' => 'お名前',
     'email' => 'メールアドレス',
     'password' => 'パスワード',
-    'password_confirmation' => '確認用パスワード',
     ],
 ];

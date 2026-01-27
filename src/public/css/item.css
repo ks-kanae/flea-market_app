@@ -1,16 +1,16 @@
 .item-detail {
     max-width: 1200px;
     margin: 40px auto;
-    padding: 0 20px;
+    padding: 0 30px;
 }
 
-.item-detail__container {
+.item-detail-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 60px;
 }
 
-.item-detail__left {
+.item-detail-left {
     position: sticky;
     top: 20px;
     height: fit-content;
@@ -36,7 +36,6 @@
     border-radius: 4px;
 }
 
-/* SOLDバッジ */
 .sold-badge {
     position: absolute;
     top: 0;
@@ -51,7 +50,7 @@
 }
 
 .sold-badge::after {
-    content: 'SOLD';
+    content: 'Sold';
     position: absolute;
     top: -110px;
     left: 18px;
@@ -63,7 +62,7 @@
     white-space: nowrap;
 }
 
-.item-detail__right {
+.item-detail-right {
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -71,7 +70,7 @@
 
 .item-name {
     font-size: 24px;
-    font-weight: normal;
+    font-weight: 600;
     margin: 0;
     color: #333;
 }
@@ -83,7 +82,7 @@
 }
 
 .item-price {
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 500;
     color: #333;
     margin: 0;
@@ -152,8 +151,8 @@
     border: none;
     padding: 14px;
     border-radius: 4px;
-    font-size: 16px;
-    font-weight: 500;
+    font-size: 18px;
+    font-weight: 600;
     cursor: pointer;
     transition: background-color 0.2s;
     text-decoration: none;
@@ -172,8 +171,8 @@
 }
 
 .section-title {
-    font-size: 16px;
-    font-weight: 500;
+    font-size: 18px;
+    font-weight: 600;
     margin: 0 0 16px 0;
     color: #333;
 }
@@ -194,8 +193,9 @@
 
 .info-label {
     width: 120px;
-    color: #666;
+    color: #333;
     flex-shrink: 0;
+    font-weight: 600;
 }
 
 .info-value {
@@ -235,7 +235,7 @@
 
 .comment-author {
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 600;
     color: #333;
 }
 
@@ -283,10 +283,10 @@
     border-color: #ff5655;
 }
 
-.comment-error {
+.comment-error, .like-error {
     color: #ff0000;
     font-size: 14px;
-    margin-bottom: 3px;
+    margin: 0 0 3px 3px;
 }
 
 .comment-submit {
@@ -295,8 +295,8 @@
     border: none;
     padding: 12px 24px;
     border-radius: 4px;
-    font-size: 14px;
-    font-weight: 500;
+    font-size: 16px;
+    font-weight: 600;
     cursor: pointer;
     transition: background-color 0.2s;
     width: 100%;
@@ -307,34 +307,13 @@
     background-color: #fd1616;
 }
 
-.comment-button {
-    display: block;
-    width: 100%;
-    background-color: #ff5655;
-    color: #fff;
-    border: none;
-    padding: 14px;
-    border-radius: 4px;
-    font-size: 16px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    text-decoration: none;
-    text-align: center;
-    margin-bottom: 60px;
-}
-
-.comment-button:hover {
-    background-color: #fd1616;
-}
-
 @media (max-width: 768px) {
-    .item-detail__container {
+    .item-detail-container {
         grid-template-columns: 1fr;
         gap: 30px;
     }
 
-    .item-detail__left {
+    .item-detail-left {
         position: static;
     }
 }

@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\LikeController;
@@ -26,7 +27,29 @@ Route::get('/', [ProductController::class, 'index'])
     ->middleware('profile.completed')
     ->name('home');
 
+Route::get('/email/verify', function () {
+    if (auth()->user()->hasVerifiedEmail()) {
+        return redirect('/');
+    }
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+    if (! $request->user()->profile_completed) {
+        return redirect()->route('profile.edit');
+    }
+    return redirect('/');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::post('/email/verification-notification', function (Request $request) {
+    request()->user()->sendEmailVerificationNotification();
+    return back();
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
 Route::get('/item/{id}', [ProductController::class, 'show']);
+Route::post('/like/{product}', [LikeController::class, 'toggle']);
+Route::post('/comment/{product}', [CommentController::class, 'store']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/mypage/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -39,13 +62,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/sell', [ProductController::class, 'create']);
     Route::post('/sell', [ProductController::class, 'store']);
 
-    Route::post('/like/{product}', [LikeController::class, 'toggle'])->middleware('auth');
-
-    Route::post('/comment/{product}', [CommentController::class, 'store']);
     Route::delete('/comment/{comment}', [CommentController::class, 'destroy']);
 
     Route::get('/purchase/{item}', [PurchaseController::class, 'show']);
     Route::post('/purchase/{item}', [PurchaseController::class, 'store']);
+    Route::get('/purchase/success/{item}', [PurchaseController::class, 'success'])
+        ->name('purchase.success');
+    Route::get('/purchase/cancel/{item}', [PurchaseController::class, 'cancel'])
+        ->name('purchase.cancel');
 
     Route::get('/purchase/address/{item}', [AddressController::class, 'edit']);
     Route::post('/purchase/address/{item}', [AddressController::class, 'update']);

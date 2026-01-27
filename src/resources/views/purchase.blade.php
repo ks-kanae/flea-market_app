@@ -69,6 +69,22 @@
     </div>
 </div>
 
+@if ($errors->has('payment'))
+<input type="checkbox" id="payment-cancel" class="modal-toggle" checked>
+
+<div class="modal">
+    <label for="payment-cancel" class="modal-overlay"></label>
+
+    <div class="modal-content">
+        <p class="modal-message">
+            {{ $errors->first('payment') }}
+        </p>
+        <label for="payment-cancel" class="modal-button">OK</label>
+    </div>
+</div>
+@endif
+
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const select = document.getElementById('payment-method');

@@ -11,6 +11,10 @@ class LikeController extends Controller
 {
     public function toggle(Product $product)
     {
+        if (!Auth::check()) {
+        return back()->with('like_error', 'いいねするにはログインが必要です');
+        }
+
         $like = Like::where('user_id', Auth::id())
                     ->where('product_id', $product->id)
                     ->first();

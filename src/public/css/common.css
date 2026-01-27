@@ -9,7 +9,7 @@ body {
     background: #000;
 }
 
-.header__inner {
+.header-inner {
     margin: 0 auto;
     padding: 8px 15px;
     max-width: 1230px;
@@ -22,8 +22,9 @@ body {
     gap: 20px;
 }
 
-.header__logo {
+.header-logo {
     height: 24px;
+    margin: 8px 0;
 }
 
 .header-search {
@@ -54,20 +55,22 @@ body {
     padding: 0;
 }
 
-.header-nav__link {
+.header-nav-link {
     color: #fff;
     text-decoration: none;
+    white-space: nowrap;
 }
 
-.header-nav__button {
+.header-nav-button {
     border: none;
     background: transparent;
     color: #fff;
     font-size: 16px;
     cursor: pointer;
+    white-space: nowrap;
 }
 
-.header-nav__button--sell {
+.header-nav-button-sell {
     background: #fff;
     color: #000;
     padding: 10px 12px;
@@ -92,7 +95,7 @@ body {
         gap: 12px;
     }
 
-    .header-nav__button--sell {
+    .header-nav-button-sell {
         padding: 8px 10px;
         font-size: 14px;
     }

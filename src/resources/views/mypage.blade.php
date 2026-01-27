@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-<div class="mypage__header">
+<div class="mypage-header">
     <div class="profile-section">
     @if(Auth::user()->profile && Auth::user()->profile->profile_image)
         <img class="profile-avatar" src="{{ asset('storage/' . Auth::user()->profile->profile_image) }}">
