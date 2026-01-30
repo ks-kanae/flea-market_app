@@ -78,10 +78,9 @@ MAIL_FROM_NAME="${APP_NAME}"
 ```
 ```
 (一番下に追加)
-+ STRIPE_KEY=pk_test_51SIzrj2NZSz0f2z5hYvwWwVViKRdXN7lcwhgODH3IJYwLa4siiNGGja2q8VKe7Ns9oR7RuEMumFMfzQd2dnfLdDm00whsfHUdq
++ STRIPE_KEY=pk_test_XXXXXXXXXX
 
-+ STRIPE_SECRET=sk_test_51SIzrj2NZSz0f2z5uP4j19mKSaLi8REgD7PQBCM60IjffHZ3lw9HT2d3SoaWCT6dC4H36FemhbhVh7um326tsZRm00B3azqTsY
-+ STRIPE_WEBHOOK_SECRET=whsec_b8473dc4b1dfe8c0915223c4585b5537f7e5c05b6e038cda39227fb5a3135e19
++ STRIPE_SECRET=sk_test_XXXXXXXXXX
 ```
 #### キー生成
 
@@ -140,7 +139,7 @@ MailHog管理画面 : http://localhost:8025/
 コンビニ支払いについては、外部決済サービスとの連携は行っておらず、
 購入フローおよび画面遷移のみを実装しています。
 
-今回の開発環境ではテスト用の Stripe API キーを使用しています。
+動作確認を行う場合は各自でテスト用の Stripe API キー取得してください。
 テスト決済の際は、以下のダミーカード情報もご利用いただけます。
 
 ```
