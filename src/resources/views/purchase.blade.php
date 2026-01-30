@@ -22,12 +22,9 @@
                 <h3>支払い方法</h3>
                 <select name="payment_method" id="payment-method">
                     <option value="">選択してください</option>
-                    <option value="convenience"
-                        {{ old('payment_method') === 'convenience' ? 'selected' : '' }}>
-                        コンビニ払い
+                    <option value="convenience" {{ ($paymentMethod ?? '') === 'convenience' ? 'selected' : '' }}>コンビニ払い
                     </option>
-                    <option value="card"
-                        {{ old('payment_method') === 'card' ? 'selected' : '' }}>
+                    <option value="card" {{ ($paymentMethod ?? '') === 'card' ? 'selected' : '' }}>
                         カード支払い
                     </option>
                 </select>
@@ -35,17 +32,25 @@
                     <p class="form-error">{{ $message }}</p>
                 @enderror
             </div>
-
-            <div class="purchase-section">
-                <div class="section-header">
-                    <h3>配送先</h3>
-                    <a href="/purchase/address/{{ $product->id }}" class="change-link">変更する</a>
-                </div>
-                <p class="address-detail">〒 {{ $postcode }}</p>
-                <p class="address-detail">{{ $address }}</p>
-                <p class="address-detail">{{ $building ?? '' }}</p>
-            </div>
+            <input type="hidden" name="postcode" value="{{ $postcode }}">
+            <input type="hidden" name="address" value="{{ $address }}">
+            <input type="hidden" name="building" value="{{ $building }}">
         </form>
+
+        <div class="purchase-section">
+            <div class="section-header">
+                <h3>配送先</h3>
+                <a href="/purchase/address/{{ $product->id }}?payment_method={{ $paymentMethod ?? '' }}" class="change-link">変更する</a>
+            </div>
+            <p class="address-detail">〒 {{ $postcode }}</p>
+            <p class="address-detail">{{ $address }}</p>
+            <p class="address-detail">{{ $building ?? '' }}</p>
+            @if ($errors->has('postcode') || $errors->has('address'))
+                <p class="form-error">
+                    配送先住所が設定されていません。
+                </p>
+            @endif
+        </div>
     </div>
 
     <div class="purchase-right">
@@ -57,9 +62,9 @@
             <div class="summary-row">
                 <span>支払い方法</span>
                 <span id="summary-payment">
-                    {{ old('payment_method')
-                        ? (old('payment_method') === 'convenience' ? 'コンビニ払い' : 'カード支払い')
-                        : '' }}
+                    {{ ($paymentMethod ?? '') === 'convenience'
+                    ? 'コンビニ払い'
+                    : (($paymentMethod ?? '') === 'card' ? 'カード支払い' : '') }}
                 </span>
             </div>
         </div>

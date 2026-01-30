@@ -41,7 +41,7 @@ class EmailVerificationTest extends TestCase
         $response = $this->actingAs($user)
             ->get(route('verification.notice'));
 
-        $response->assertStatus(200);
+        $response->assertViewIs('auth.verify-email');
         $response->assertSee('認証');
     }
 

@@ -15,7 +15,7 @@ class LikeTest extends TestCase
     /** @test */
     public function いいねアイコンを押下することによっていいねした商品として登録することができる()
     {
-        $user = User::factory()->create(['profile_completed' => true]);
+        $user = User::factory()->withProfile()->create();
         $product = Product::factory()->create();
 
         $this->actingAs($user)
@@ -30,7 +30,7 @@ class LikeTest extends TestCase
     /** @test */
     public function 追加済みのアイコンは色が変化する()
     {
-        $user = User::factory()->create(['profile_completed' => true]);
+        $user = User::factory()->withProfile()->create();
         $product = Product::factory()->create();
 
         Like::create([
@@ -47,7 +47,7 @@ class LikeTest extends TestCase
     /** @test */
     public function 再度いいねアイコンを押下することによっていいねを解除することができる()
     {
-        $user = User::factory()->create(['profile_completed' => true]);
+        $user = User::factory()->withProfile()->create();
         $product = Product::factory()->create();
 
         Like::create([

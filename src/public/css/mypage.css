@@ -1,3 +1,11 @@
+.profile-alert-success {
+    padding: 10px 30px;
+    border-color: #badbcc;
+    background-color: #edf8fd;
+    color: #00aaff;
+    margin-bottom: 20px;
+}
+
 .mypage-header {
     display: flex;
     margin: 0 auto 40px;

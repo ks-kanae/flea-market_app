@@ -40,14 +40,15 @@ class ProfileController extends Controller
         $profile->building = $request->input('building');
         $profile->save();
 
-        $user->profile_completed = true;
-        $user->name = $request->input('name');
-        $user->save();
+        $user->forceFill([
+        'name' => $request->input('name'),
+        'profile_completed' => true,
+        ])->save();
 
         if ($isFirstTime) {
         return redirect('/');
         }
 
-        return redirect()->route('profile.edit')->with('success', 'プロフィールを更新しました！');
+        return redirect()->route('mypage.index')->with('success', 'プロフィールを更新しました！');
     }
 }

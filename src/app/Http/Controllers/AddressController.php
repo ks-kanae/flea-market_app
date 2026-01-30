@@ -5,11 +5,16 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AddressRequest;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class AddressController extends Controller
 {
-    public function edit(Product $item)
+    public function edit(Request $request, Product $item)
     {
+        if ($request->filled('payment_method')) {
+        session(["purchase_payment_method.{$item->id}" => $request->payment_method]);
+        }
+
         if ($item->is_sold || $item->user_id === Auth::id()) {
         abort(404);
         }
@@ -27,13 +32,13 @@ class AddressController extends Controller
             'postcode' => $address['postcode'],
             'address' => $address['address'],
             'building' => $address['building'],
+            'paymentMethod' => session("purchase_payment_method.{$item->id}")
         ]);
 
     }
 
     public function update(AddressRequest $request, Product $item)
     {
-
         if ($item->is_sold || $item->user_id === Auth::id()) {
             abort(404);
         }
@@ -45,7 +50,6 @@ class AddressController extends Controller
                 'building',
             ])
         ]);
-
         return redirect("/purchase/{$item->id}");
     }
 }

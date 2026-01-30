@@ -24,11 +24,11 @@ use App\Http\Controllers\MypageController;
 */
 
 Route::get('/', [ProductController::class, 'index'])
-    ->middleware('profile.completed')
     ->name('home');
 
 Route::get('/email/verify', function () {
-    if (auth()->user()->hasVerifiedEmail()) {
+    $user = auth()->user();
+    if ($user->hasVerifiedEmail()) {
         return redirect('/');
     }
     return view('auth.verify-email');
@@ -36,15 +36,12 @@ Route::get('/email/verify', function () {
 
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
-    if (! $request->user()->profile_completed) {
-        return redirect()->route('profile.edit');
-    }
     return redirect('/');
 })->middleware(['auth', 'signed'])->name('verification.verify');
 
 Route::post('/email/verification-notification', function (Request $request) {
-    request()->user()->sendEmailVerificationNotification();
-    return back();
+    $request->user()->sendEmailVerificationNotification();
+    return back()->with('status', 'Verification link sent!');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
 Route::get('/item/{id}', [ProductController::class, 'show']);

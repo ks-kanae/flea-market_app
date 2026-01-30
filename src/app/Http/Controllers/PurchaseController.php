@@ -26,11 +26,14 @@ class PurchaseController extends Controller
             'building' => $user->profile->building ?? '',
         ]);
 
+        $paymentMethod = session("purchase_payment_method.{$item->id}");
+
         return view('purchase', [
             'product'  => $item,
             'postcode' => $address['postcode'],
             'address'  => $address['address'],
             'building' => $address['building'],
+            'paymentMethod' => $paymentMethod,
         ]);
     }
 
@@ -110,9 +113,11 @@ class PurchaseController extends Controller
             'building' => $address['building'],
         ]);
 
-        $item->update(['is_sold' => true]);
+        $item->update(['is_sold' => true,
+        ]);
 
         session()->forget("purchase_address.{$item->id}");
+        session()->forget("purchase_payment_method.{$item->id}");
 
         return redirect('/')
             ->with('success', '購入が完了しました');

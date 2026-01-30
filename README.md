@@ -3,11 +3,11 @@
 こちらのアプリは、アイテムの出品と購入を行うためのフリマアプリです。
 
 主な機能は以下の通りです。
-・ ユーザー登録 / ログイン機能（Laravel Fortify）
-・ メール認証機能（MailHog）
-・ 商品出品・購入機能
-・ Stripe を利用したカード決済機能
-・ コンビニ支払い
+* ユーザー登録 / ログイン機能（Laravel Fortify）
+* メール認証機能（MailHog）
+* 商品出品・購入機能
+* Stripe を利用したカード決済機能
+* コンビニ支払い
 
 環境構築の詳細を以下に記載しております。
 
@@ -65,7 +65,24 @@ DB_PORT=3306
 + DB_USERNAME=laravel_user
 + DB_PASSWORD=laravel_pass
 ```
+```
+MAIL_MAILER=smtp
+MAIL_HOST=mailhog
+MAIL_PORT=1025
+MAIL_USERNAME=null
+MAIL_PASSWORD=null
+MAIL_ENCRYPTION=null
+- MAIL_FROM_ADDRESS=null
++ MAIL_FROM_ADDRESS=test@example.com
+MAIL_FROM_NAME="${APP_NAME}"
+```
+```
+(一番下に追加)
++ STRIPE_KEY=pk_test_51SIzrj2NZSz0f2z5hYvwWwVViKRdXN7lcwhgODH3IJYwLa4siiNGGja2q8VKe7Ns9oR7RuEMumFMfzQd2dnfLdDm00whsfHUdq
 
++ STRIPE_SECRET=sk_test_51SIzrj2NZSz0f2z5uP4j19mKSaLi8REgD7PQBCM60IjffHZ3lw9HT2d3SoaWCT6dC4H36FemhbhVh7um326tsZRm00B3azqTsY
++ STRIPE_WEBHOOK_SECRET=whsec_b8473dc4b1dfe8c0915223c4585b5537f7e5c05b6e038cda39227fb5a3135e19
+```
 #### キー生成
 
 ```

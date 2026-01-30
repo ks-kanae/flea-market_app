@@ -15,7 +15,8 @@ class CommentTest extends TestCase
     /** @test */
     public function ログイン済みのユーザーはコメントを送信できる()
     {
-        $user = User::factory()->create(['profile_completed' => true]);
+        $user = User::factory()->create(['profile_completed' => true,
+        'email_verified_at' => now(),]);
         $product = Product::factory()->create();
 
         $this->actingAs($user)
@@ -45,7 +46,8 @@ class CommentTest extends TestCase
     /** @test */
     public function コメントが入力されていない場合バリデーションメッセージが表示される()
     {
-        $user = User::factory()->create(['profile_completed' => true]);
+        $user = User::factory()->create(['profile_completed' => true,
+        'email_verified_at' => now(),]);
         $product = Product::factory()->create();
 
         $response = $this->actingAs($user)
@@ -59,7 +61,8 @@ class CommentTest extends TestCase
     /** @test */
     public function コメントが255字以上の場合バリデーションメッセージが表示される()
     {
-        $user = User::factory()->create(['profile_completed' => true]);
+        $user = User::factory()->create(['profile_completed' => true,
+        'email_verified_at' => now(),]);
         $product = Product::factory()->create();
 
         $response = $this->actingAs($user)

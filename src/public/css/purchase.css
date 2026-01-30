@@ -64,11 +64,14 @@
 }
 
 .change-link {
+    margin-right: 30px;
     color: #0066cc;
     text-decoration: none;
+    border: none;
     font-size: 14px;
     font-weight: 500;
-    padding-right: 3%;
+    cursor: pointer;
+    white-space: nowrap;
 }
 
 .change-link:hover {

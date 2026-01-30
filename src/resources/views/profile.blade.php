@@ -5,11 +5,6 @@
 @endsection
 
 @section('content')
-@if (session('success'))
-    <div class="profile-alert-success">
-        {{ session('success') }}
-    </div>
-@endif
 <div class="profile-container">
     <h2 class="profile-heading">プロフィール設定</h2>
 

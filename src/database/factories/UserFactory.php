@@ -8,6 +8,8 @@ use Illuminate\Support\Str;
 
 class UserFactory extends Factory
 {
+    protected $model = User::class;
+
     /**
      * Define the model's default state.
      *
@@ -19,8 +21,9 @@ class UserFactory extends Factory
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'password' => bcrypt('password'),
             'remember_token' => Str::random(10),
+            'profile_completed' => false,
         ];
     }
 
@@ -40,14 +43,16 @@ class UserFactory extends Factory
 
     public function withProfile()
     {
-        return $this->state([
-            'profile_completed' => true,
-        ])->afterCreating(function (User $user) {
+        return $this->afterCreating(function (User $user) {
             $user->profile()->create([
                 'postcode' => '123-4567',
                 'address' => '東京都渋谷区',
                 'building' => 'テストビル',
             ]);
+
+            $user->forceFill([
+                'profile_completed' => true,
+            ])->save();
         });
     }
 }

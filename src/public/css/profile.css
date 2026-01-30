@@ -1,11 +1,3 @@
-.profile-alert-success {
-    padding: 10px 30px;
-    border-color: #badbcc;
-    background-color: #edf8fd;
-    color: #00aaff;
-    margin-bottom: 20px;
-}
-
 .profile-container {
     width: 40%;
     max-width: 800px;

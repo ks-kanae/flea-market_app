@@ -15,7 +15,9 @@ class PurchaseTest extends TestCase
     /** @test */
     public function 購入するボタンを押下すると購入が完了する()
     {
-        $buyer = User::factory()->withProfile()->create();
+        $buyer = User::factory()->withProfile()->create([
+        'profile_completed' => true,
+        ]);
         $seller = User::factory()->withProfile()->create();
 
         $product = Product::factory()->create([
@@ -37,13 +39,18 @@ class PurchaseTest extends TestCase
         $this->assertDatabaseHas('purchases', [
             'user_id' => $buyer->id,
             'product_id' => $product->id,
+            'postcode' => '123-4567',
+            'address' => '東京都',
+            'building' => 'テスト',
         ]);
     }
 
     /** @test */
     public function 購入した商品は商品一覧画面にてsoldと表示される()
     {
-        $buyer = User::factory()->withProfile()->create();
+        $buyer = User::factory()->withProfile()->create([
+        'profile_completed' => true,
+        ]);
         $seller = User::factory()->withProfile()->create();
 
         $product = Product::factory()->create([
@@ -52,17 +59,16 @@ class PurchaseTest extends TestCase
         ]);
 
         $this->actingAs($buyer)
-        ->withSession([
-            "purchase_address.{$product->id}" => [
-                'postcode' => '123-4567',
-                'address' => '東京都',
-                'building' => 'テスト',
-            ],
-        ])
-        ->post("/purchase/{$product->id}", [
-            'payment_method' => 'convenience',
-        ]);
-
+            ->withSession([
+                "purchase_address.{$product->id}" => [
+                    'postcode' => '123-4567',
+                    'address' => '東京都',
+                    'building' => 'テスト',
+                ],
+            ])
+            ->post("/purchase/{$product->id}", [
+                'payment_method' => 'convenience',
+            ]);
 
         $product->refresh();
 

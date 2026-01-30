@@ -5,6 +5,11 @@
 @endsection
 
 @section('content')
+@if (session('success'))
+    <div class="profile-alert-success">
+        {{ session('success') }}
+    </div>
+@endif
 <div class="mypage-header">
     <div class="profile-section">
     @if(Auth::user()->profile && Auth::user()->profile->profile_image)

@@ -18,7 +18,8 @@ class RegisterTest extends TestCase
     /** @test */
     public function 会員登録できる()
     {
-        $response = $this->post('/register', [ 'name' => 'テスト太郎', 'email' => 'test@example.com', 'password' => 'password123', 'password_confirmation' => 'password123', ]); $response->assertRedirect('/mypage/profile');
+        $response = $this->post('/register', [ 'name' => 'テスト太郎', 'email' => 'test@example.com', 'password' => 'password123', 'password_confirmation' => 'password123', ]);
+        $response->assertRedirect('/');
     }
 
     /** @test */
@@ -106,7 +107,7 @@ class RegisterTest extends TestCase
             'password_confirmation' => 'password123',
         ]);
 
-        $response->assertRedirect('/mypage/profile');
+        $response->assertRedirect('/');
         $this->assertDatabaseHas('users', [
             'email' => 'test@example.com',
         ]);
