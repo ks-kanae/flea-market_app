@@ -77,15 +77,21 @@ MAIL_ENCRYPTION=null
 MAIL_FROM_NAME="${APP_NAME}"
 ```
 ```
-(一番下に追加)
+(テスト用のStripe API キーを追加)
 + STRIPE_KEY=pk_test_XXXXXXXXXX
-
 + STRIPE_SECRET=sk_test_XXXXXXXXXX
 ```
 #### キー生成
 
 ```
 php artisan key:generate
+(PHPコンテナ上で実行)
+```
+
+#### ストレージリンクの作成
+
+```
+php artisan storage:link
 (PHPコンテナ上で実行)
 ```
 
@@ -139,7 +145,7 @@ MailHog管理画面 : http://localhost:8025/
 コンビニ支払いについては、外部決済サービスとの連携は行っておらず、
 購入フローおよび画面遷移のみを実装しています。
 
-動作確認を行う場合は各自でテスト用の Stripe API キー取得してください。
+動作確認を行う場合は各自でテスト用の Stripe API キーの取得をお願い致します。
 テスト決済の際は、以下のダミーカード情報もご利用いただけます。
 
 ```
