@@ -26,14 +26,11 @@ class PurchaseController extends Controller
             'building' => $user->profile->building ?? '',
         ]);
 
-        $paymentMethod = session("purchase_payment_method.{$item->id}");
-
         return view('purchase', [
             'product'  => $item,
             'postcode' => $address['postcode'],
             'address'  => $address['address'],
             'building' => $address['building'],
-            'paymentMethod' => $paymentMethod,
         ]);
     }
 

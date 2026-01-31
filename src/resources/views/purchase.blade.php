@@ -22,11 +22,8 @@
                 <h3>支払い方法</h3>
                 <select name="payment_method" id="payment-method">
                     <option value="">選択してください</option>
-                    <option value="convenience" {{ ($paymentMethod ?? '') === 'convenience' ? 'selected' : '' }}>コンビニ払い
-                    </option>
-                    <option value="card" {{ ($paymentMethod ?? '') === 'card' ? 'selected' : '' }}>
-                        カード支払い
-                    </option>
+                    <option value="convenience">コンビニ払い</option>
+                    <option value="card">カード支払い</option>
                 </select>
                 @error('payment_method')
                     <p class="form-error">{{ $message }}</p>
@@ -40,7 +37,7 @@
         <div class="purchase-section">
             <div class="section-header">
                 <h3>配送先</h3>
-                <a href="/purchase/address/{{ $product->id }}?payment_method={{ $paymentMethod ?? '' }}" class="change-link">変更する</a>
+                <a href="/purchase/address/{{ $product->id }}" class="change-link">変更する</a>
             </div>
             <p class="address-detail">〒 {{ $postcode }}</p>
             <p class="address-detail">{{ $address }}</p>

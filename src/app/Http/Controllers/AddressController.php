@@ -5,16 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AddressRequest;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
 
 class AddressController extends Controller
 {
-    public function edit(Request $request, Product $item)
+    public function edit(Product $item)
     {
-        if ($request->filled('payment_method')) {
-        session(["purchase_payment_method.{$item->id}" => $request->payment_method]);
-        }
-
         if ($item->is_sold || $item->user_id === Auth::id()) {
         abort(404);
         }
