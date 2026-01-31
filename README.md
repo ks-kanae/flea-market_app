@@ -136,7 +136,7 @@ Webサーバー：Nginx 1.21.1
 phpMyAdmin：http://localhost:8080/
 
 MailHog管理画面 : http://localhost:8025/
-※ 開発環境ではメール認証メールは MailHog に送信されます
+  ※ 開発環境ではメール認証メールは MailHog に送信されます
 
 
 ## Stripeについて
