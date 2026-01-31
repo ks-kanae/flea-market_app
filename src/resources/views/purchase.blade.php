@@ -20,7 +20,7 @@
             @csrf
             <div class="purchase-section">
                 <h3>支払い方法</h3>
-                <select name="payment_method" id="payment-method">
+                <select name="payment_method" id="payment-method" class="payment-method">
                     <option value="">選択してください</option>
                     <option value="convenience">コンビニ払い</option>
                     <option value="card">カード支払い</option>
