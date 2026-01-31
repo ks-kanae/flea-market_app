@@ -23,7 +23,6 @@
             <p class="item-price">
             ¥{{ number_format($product->price) }} <span class="tax">(税込)</span>
             </p>
-
             <div class="item-actions">
                 <form action="/like/{{ $product->id }}" method="POST">
                 @csrf
@@ -38,7 +37,6 @@
                         </span>
                     </button>
                 </form>
-
                 <button class="action-button">
                     <img src="{{ asset('img/ふきだしロゴ.png') }}" class="action-icon">
                     <span class="count">{{ $product->comments->count() }}</span>
@@ -56,14 +54,12 @@
             @else
             <a href="{{ route('login') }}" class="purchase-button">購入手続きへ</a>
             @endauth
-
             <div class="item-description">
                 <h2 class="section-title">商品説明
                 </h2>
                 <p class="description-text">{{ $product->description }}
                 </p>
             </div>
-
             <div class="item-info">
                 <h2 class="section-title">商品の情報</h2>
                 <div class="info-row">
@@ -74,18 +70,15 @@
                         @endforeach
                     </div>
                 </div>
-
                 <div class="info-row">
                     <span class="info-label">商品の状態</span>
                     <span class="info-value">{{ $product->condition }}</span>
                 </div>
             </div>
-
             <div class="comments">
                 <h2 class="section-title">
                     コメント ({{ $product->comments->count() }})
                 </h2>
-
                 @if ($product->comments->count() > 0)
                 @foreach ($product->comments as $comment)
                 <div class="comment-item">
@@ -108,13 +101,11 @@
                         </form>
                         @endif
                     </div>
-
                     <p class="comment-text">
                         {{ $comment->body }}
                     </p>
                 </div>
                 @endforeach
-
                 @else
                 <div class="comment-item">
                     <div class="comment-header">
@@ -125,7 +116,6 @@
                 </div>
                 @endif
             </div>
-
             @if (!$product->is_sold)
             <div class="comment-form">
                 <h2 class="section-title">商品へのコメント</h2>

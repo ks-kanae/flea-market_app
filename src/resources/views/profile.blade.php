@@ -7,7 +7,6 @@
 @section('content')
 <div class="profile-container">
     <h2 class="profile-heading">プロフィール設定</h2>
-
     <form class="profile-form h-adr" action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data" >
     @csrf
         <span class="p-country-name" hidden>Japan</span>

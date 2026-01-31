@@ -51,6 +51,7 @@
     <main>
         @yield('content')
     </main>
+
     <script src="https://yubinbango.github.io/yubinbango/yubinbango.js"></script>
 </body>
 
